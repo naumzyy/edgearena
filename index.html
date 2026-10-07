@@ -1,136 +1,171 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#08121d" />
-  <meta name="robots" content="index,follow" />
-  <title>PulseMatch — спорт в моменте</title>
-  <meta name="description" content="Спортивные события, live-линия и быстрый переход к лицензированному букмекеру-партнеру. 18+." />
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0B0E11">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Спортивная платформа: события, коэффициенты, бонусы и быстрый доступ с мобильного.">
+  <title>Пульс Спорта — спортивная платформа</title>
+  <link rel="preload" href="./styles.css" as="style">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./config.js" defer></script>
+  <script src="./app.js" defer></script>
 </head>
 <body>
-  <div class="noise" aria-hidden="true"></div>
-  <header class="topbar wrap">
-    <a class="brand" href="#top" aria-label="PulseMatch — на главную">
-      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span class="brand-copy"><b>PulseMatch</b><small>SPORTS / LIVE</small></span>
-    </a>
-    <div class="top-actions">
-      <span class="age">18+</span>
-      <a href="#responsible" class="text-link">Ответственная игра</a>
-    </div>
-  </header>
+  <div class="site-shell">
+    <header class="topbar" aria-label="Главная навигация">
+      <a class="brand" href="#top" aria-label="Пульс Спорта — наверх">
+        <span class="brand-mark" aria-hidden="true"><i></i><b></b></span>
+        <span>ПУЛЬС <strong>СПОРТА</strong></span>
+      </a>
+      <a class="top-cta js-offer" href="#" data-source="header">Перейти</a>
+    </header>
 
-  <main id="top">
-    <section class="hero wrap">
-      <div class="hero-copy reveal">
-        <div class="eyebrow"><span></span> СПОРТ В МОМЕНТЕ</div>
-        <h1>Матч начинается<br><em>до первого свистка.</em></h1>
-        <p class="lead">Смотри события дня, выбирай интересующие матчи и переходи к актуальной линии лицензированного букмекера-партнёра.</p>
-        <div class="hero-cta">
-          <button class="cta js-offer" type="button">
-            <span>Смотреть линию</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
-          </button>
-          <div class="micro"><b>18+</b> Играйте ответственно. Азартные игры могут вызывать зависимость.</div>
-        </div>
-        <div class="chips" aria-label="Возможности">
-          <span>Live-события</span><span>Спорт 24/7</span><span>Быстрый переход</span>
-        </div>
-      </div>
+    <main id="top">
+      <section class="hero section">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="pulse-dot"></span> СПОРТ · СЕЙЧАС · КИБЕРСПОРТ</div>
+          <h1 id="heroTitle">Твой первый шаг к большой победе. Забирай бонус на старт!</h1>
+          <p class="hero-sub" id="heroSubtitle">Высокие коэффициенты, быстрые выплаты и бонус при регистрации.</p>
 
-      <div class="hero-visual reveal delay-1" aria-label="Спортивная визуализация">
-        <div class="orb orb-a"></div><div class="orb orb-b"></div>
-        <div class="scoreboard">
-          <div class="sb-head"><span>LIVE</span><small>СОБЫТИЕ ДНЯ</small></div>
-          <div class="teams">
-            <div class="team"><span class="crest cyan">A</span><b>Команда A</b></div>
-            <div class="score"><strong>1</strong><span>:</span><strong>1</strong><small>67'</small></div>
-            <div class="team right"><span class="crest lime">B</span><b>Команда B</b></div>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-xl js-offer" href="#" data-source="hero">
+              <span>ПОЛУЧИТЬ БОНУС</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="link-btn" href="#bonus">Сравнить бонусы</a>
           </div>
-          <div class="momentum"><i style="--w:72%"></i><i style="--w:48%"></i><i style="--w:61%"></i><i style="--w:83%"></i><i style="--w:55%"></i><i style="--w:68%"></i><i style="--w:44%"></i><i style="--w:76%"></i></div>
-          <div class="sb-bottom"><span>Актуальные коэффициенты — на сайте партнёра</span><b>→</b></div>
+
+          <div class="trust-row" aria-label="Информация о доступе">
+            <span class="trust-chip"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-5"/></svg>18+ · Лицензированная деятельность</span>
+            <span class="trust-chip muted">Защищённое соединение</span>
+          </div>
         </div>
-        <div class="float-card fc-1"><span class="dot cyan-dot"></span><b>Футбол</b><small>события сегодня</small></div>
-        <div class="float-card fc-2"><span class="dot lime-dot"></span><b>Хоккей</b><small>live и прематч</small></div>
-        <div class="float-card fc-3"><span class="dot purple-dot"></span><b>Баскетбол</b><small>главные лиги</small></div>
-      </div>
-    </section>
 
-    <section class="ticker" aria-label="Популярные виды спорта">
-      <div class="ticker-track">
-        <span>ФУТБОЛ</span><i>✦</i><span>ХОККЕЙ</span><i>✦</i><span>БАСКЕТБОЛ</span><i>✦</i><span>ТЕННИС</span><i>✦</i><span>КИБЕРСПОРТ</span><i>✦</i><span>ФУТБОЛ</span><i>✦</i><span>ХОККЕЙ</span><i>✦</i><span>БАСКЕТБОЛ</span><i>✦</i><span>ТЕННИС</span><i>✦</i><span>КИБЕРСПОРТ</span><i>✦</i>
-      </div>
-    </section>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="orb orb-a"></div>
+          <div class="orb orb-b"></div>
+          <div class="stadium">
+            <div class="stadium-grid"></div>
+            <div class="score-card glass">
+              <div class="score-top"><span>СЕЙЧАС</span><small>72:18</small></div>
+              <div class="teams"><b>2</b><i>:</i><b>1</b></div>
+              <div class="odds"><span>1.84</span><span>3.20</span><span>4.65</span></div>
+            </div>
+            <svg class="sport-ball" viewBox="0 0 240 240">
+              <defs><radialGradient id="g"><stop offset="0" stop-color="#eafff1"/><stop offset=".45" stop-color="#00e676"/><stop offset="1" stop-color="#064b2b"/></radialGradient></defs>
+              <circle cx="120" cy="120" r="86" fill="url(#g)" opacity=".95"/>
+              <path d="M120 57l30 22-11 35H101L90 79l30-22zm-30 92l-31-8-10-34 24-24 18 31-1 35zm60 0l31-8 10-34-24-24-18 31 1 35zm-44 40l-19-29 17-26h32l17 26-19 29h-28z" fill="#07140d" opacity=".82"/>
+            </svg>
+            <div class="ticker-card glass"><span>⚡</span><div><small>Сегодня</small><b>1 000+ событий</b></div></div>
+          </div>
+        </div>
+      </section>
 
-    <section class="section wrap" id="events">
-      <div class="section-head reveal">
-        <div><div class="eyebrow"><span></span> СЕГОДНЯ В ФОКУСЕ</div><h2>Выбирай свой спорт.</h2></div>
-        <p>Без перегруженных таблиц на лендинге: нажми на интересующий формат — актуальная линия откроется у партнёра.</p>
-      </div>
-      <div class="sport-grid">
-        <button class="sport-card js-offer reveal" data-sport="football">
-          <span class="sport-icon">⚽</span><div><small>ТОП-МАТЧИ</small><h3>Футбол</h3><p>Лиги, кубки и live-события.</p></div><span class="arrow">↗</span>
-        </button>
-        <button class="sport-card js-offer reveal delay-1" data-sport="hockey">
-          <span class="sport-icon">◉</span><div><small>ДИНАМИКА</small><h3>Хоккей</h3><p>Главные матчи и live-линия.</p></div><span class="arrow">↗</span>
-        </button>
-        <button class="sport-card js-offer reveal delay-2" data-sport="basketball">
-          <span class="sport-icon">◍</span><div><small>В МОМЕНТЕ</small><h3>Баскетбол</h3><p>Турниры и события дня.</p></div><span class="arrow">↗</span>
-        </button>
-      </div>
-    </section>
+      <section class="section perks" aria-label="Преимущества">
+        <article class="perk glass">
+          <div class="perk-icon">↗</div>
+          <h2>Быстрый вывод</h2>
+          <p id="fastPayoutText">Удобные способы получения выплат.</p>
+        </article>
+        <article class="perk glass">
+          <div class="perk-icon">%</div>
+          <h2>Топ коэффициенты</h2>
+          <p>Конкурентная линия на ключевые спортивные события.</p>
+        </article>
+        <article class="perk glass">
+          <div class="perk-icon">∞</div>
+          <h2>1 000+ событий</h2>
+          <p>Футбол, хоккей, ММА, баскетбол и киберспорт каждый день.</p>
+        </article>
+        <article class="perk glass accent-card">
+          <div class="perk-icon">★</div>
+          <h2>Стартовый бонус</h2>
+          <p id="startBonusText">Условия бонуса уточняйте у оператора.</p>
+        </article>
+      </section>
 
-    <section class="section wrap split">
-      <div class="feature-panel reveal">
-        <span class="feature-index">01</span>
-        <h2>Один клик до актуальной линии.</h2>
-        <p>Мы не копируем коэффициенты и не показываем устаревшие данные. Финальные условия, правила ставок и live-информация всегда отображаются непосредственно на сайте лицензированного оператора.</p>
-        <button class="ghost js-offer" type="button">Открыть линию <span>→</span></button>
-      </div>
-      <div class="feature-stack reveal delay-1">
-        <article><b>LIVE</b><div><h3>События прямо сейчас</h3><p>Переходи к матчам, которые уже идут.</p></div></article>
-        <article><b>24/7</b><div><h3>Спорт без паузы</h3><p>Футбол, хоккей, баскетбол, теннис и другие дисциплины.</p></div></article>
-        <article><b>18+</b><div><h3>Только для совершеннолетних</h3><p>Участие в азартных играх может привести к зависимости.</p></div></article>
-      </div>
-    </section>
+      <section class="section bonus-section" id="bonus">
+        <div class="section-heading">
+          <span class="kicker">ВЫБЕРИ СВОЙ ВАРИАНТ</span>
+          <h2>Какой бонус тебе ближе?</h2>
+          <p>Нажми на карточку — выбранный вариант будет передан при переходе.</p>
+        </div>
 
-    <section class="cta-section wrap reveal">
-      <div class="cta-panel">
-        <div class="cta-glow"></div>
-        <div><div class="eyebrow light"><span></span> ГОТОВ К МАТЧУ?</div><h2>Все события —<br>в актуальной линии.</h2></div>
-        <button class="cta dark js-offer" type="button"><span>Перейти к букмекеру</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
-      </div>
-    </section>
+        <div class="bonus-grid" role="radiogroup" aria-label="Выбор бонуса">
+          <button class="bonus-card glass is-active" type="button" role="radio" aria-checked="true" data-bonus="freebet">
+            <span class="bonus-badge">БЕЗ ЛИШНИХ ШАГОВ</span>
+            <span class="bonus-icon">⚡</span>
+            <strong id="freebetText">Фрибет 2 000 ₽</strong>
+            <small>Вариант для быстрого старта</small>
+            <i class="select-dot"></i>
+          </button>
+          <button class="bonus-card glass" type="button" role="radio" aria-checked="false" data-bonus="welcome">
+            <span class="bonus-badge violet">БОЛЬШЕ НА СТАРТЕ</span>
+            <span class="bonus-icon">✦</span>
+            <strong id="welcomeText">+100% к первому пополнению</strong>
+            <small>Вариант для увеличенного стартового баланса</small>
+            <i class="select-dot"></i>
+          </button>
+        </div>
 
-    <section class="legal-section wrap" id="responsible">
-      <div class="legal-card">
-        <span class="legal-icon">18+</span>
-        <div><h3>Ответственная игра</h3><p>Участие в азартных играх может привести к возникновению зависимости. Не рассматривайте ставки как способ заработка. Устанавливайте лимиты времени и средств и не играйте на заёмные деньги.</p></div>
-      </div>
-      <div class="legal-grid">
-        <div><small>ОРГАНИЗАТОР</small><p id="operator-name">[Юридическое лицо из оффера]</p></div>
-        <div><small>ЛИЦЕНЗИЯ</small><p id="license-info">[Номер лицензии и орган, выдавший её]</p></div>
-        <div><small>ИНФОРМАЦИЯ</small><p>Правила проведения азартных игр, сроки, порядок определения выигрыша и получения выигрышей доступны на сайте оператора.</p></div>
-      </div>
-    </section>
-  </main>
+        <a class="btn btn-primary btn-wide js-offer" href="#" data-source="bonus-widget">
+          <span id="bonusCtaText">ВЫБРАТЬ ФРИБЕТ</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+        <p class="fineprint">Конкретный размер и порядок начисления бонуса определяются правилами акции оператора.</p>
+      </section>
 
-  <footer class="footer wrap">
-    <div class="brand mini"><span class="brand-mark"><i></i><i></i><i></i></span><span class="brand-copy"><b>PulseMatch</b><small>SPORTS / LIVE</small></span></div>
-    <p>Информационная страница. Не является сайтом букмекерской конторы и не принимает ставки.</p>
-    <div><a href="privacy.html">Политика конфиденциальности</a><a href="#responsible">18+ / Ответственная игра</a></div>
-  </footer>
+      <section class="section live-proof" id="liveProof" hidden>
+        <div class="section-heading compact">
+          <span class="kicker"><span class="pulse-dot"></span> ПОДТВЕРЖДЁННЫЕ ВЫПЛАТЫ</span>
+          <h2>Сейчас на платформе</h2>
+        </div>
+        <div class="live-window glass" aria-live="polite">
+          <div class="live-track" id="liveTrack"></div>
+        </div>
+      </section>
 
-  <div class="sticky-cta" id="stickyCta">
-    <div><small>АКТУАЛЬНАЯ ЛИНИЯ</small><b>События дня</b></div>
-    <button class="js-offer" type="button">Перейти <span>→</span></button>
+      <section class="section sports-strip">
+        <div class="sport-chip">⚽ Футбол</div>
+        <div class="sport-chip">🏒 Хоккей</div>
+        <div class="sport-chip">🥊 ММА</div>
+        <div class="sport-chip">🏀 Баскетбол</div>
+        <div class="sport-chip">🎮 Киберспорт</div>
+      </section>
+
+      <section class="section final-cta glass">
+        <div>
+          <span class="kicker">ГОТОВ К СТАРТУ?</span>
+          <h2>События уже в линии</h2>
+          <p>Выбери бонус и переходи к регистрации на стороне лицензированного оператора.</p>
+        </div>
+        <a class="btn btn-primary btn-xl js-offer" href="#" data-source="final">ПОЛУЧИТЬ БОНУС</a>
+      </section>
+
+      <section class="legal section" aria-label="Юридическая информация">
+        <div class="age">18+</div>
+        <div>
+          <p><strong>Участие в азартных играх может привести к возникновению зависимости от них.</strong></p>
+          <p>Информация об организаторе азартных игр, правилах проведения, сроках, порядке определения выигрыша и максимально допустимом его значении, месте и порядке получения выигрышей размещена на сайте оператора.</p>
+          <p><span id="operatorName">[Юридическое лицо оператора]</span> · <span id="licenseText">[Номер лицензии и орган, выдавший лицензию]</span></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> ПУЛЬС СПОРТА</span>
+      <span>Информационный лендинг спортивной платформы</span>
+    </footer>
   </div>
 
-  <noscript><div class="noscript">Для перехода к спортивной линии включите JavaScript.</div></noscript>
-  <script src="config.js"></script>
-  <script src="app.js"></script>
+  <div class="mobile-sticky" id="mobileSticky">
+    <div><small>Выбранный бонус</small><b id="stickyBonus">Фрибет 2 000 ₽</b></div>
+    <a class="btn btn-primary js-offer" href="#" data-source="sticky">ЗАБРАТЬ</a>
+  </div>
+
+  <!-- ЯНДЕКС МЕТРИКА: вставка выполняется автоматически из config.js,
+       либо замените этот комментарий кодом счётчика вручную. -->
 </body>
 </html>

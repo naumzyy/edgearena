@@ -1,9 +1,8 @@
 services:
   - type: web
-    name: pulsematch-landing
+    name: edgearena-landing
     runtime: static
     staticPublishPath: .
-    buildCommand: echo "Static landing — no build required"
     pullRequestPreviewsEnabled: false
     headers:
       - path: /*
@@ -13,5 +12,5 @@ services:
         name: Referrer-Policy
         value: strict-origin-when-cross-origin
       - path: /*
-        name: X-Frame-Options
-        value: SAMEORIGIN
+        name: Permissions-Policy
+        value: camera=(), microphone=(), geolocation=()
