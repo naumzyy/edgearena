@@ -64,14 +64,22 @@
     reveal.forEach(el => io.observe(el));
   } else reveal.forEach(el => el.classList.add("is-visible"));
 
-  // --- Яндекс Метрика ---
-  if (cfg.yandexMetrikaId) {
-    const id = Number(cfg.yandexMetrikaId);
-    window.ym = window.ym || function () { (window.ym.a = window.ym.a || []).push(arguments); };
-    window.ym.l = Date.now();
-    const s = document.createElement("script");
-    s.async = true; s.src = "https://mc.yandex.ru/metrika/tag.js";
-    document.head.appendChild(s);
-    window.ym(id, "init", { clickmap: true, trackLinks: true, accurateTrackBounce: true });
-  }
+  // --- Дополнительные цели: прокрутка и просмотр условий (каждая срабатывает один раз) ---
+  const once = (name, el, params) => {
+    if (!el || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) { trackGoal(name, params); io.disconnect(); }
+    }, { threshold: .3 });
+    io.observe(el);
+  };
+  once("view_steps", $("#how"));
+  once("view_rules", $("#rules"));
+  once("view_final_cta", $(".final-cta"));
+  // Время на странице
+  [15, 30, 60].forEach(sec => setTimeout(() => trackGoal("time_" + sec + "s"), sec * 1000));
+  // Клик по ссылке «Условия» под кнопкой
+  const note = $(".hero-note a");
+  if (note) note.addEventListener("click", () => trackGoal("click_rules_link"));
+
+  // Код Метрики установлен напрямую в <head> страницы (index.html).
 })();

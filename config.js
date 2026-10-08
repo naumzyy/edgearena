@@ -3,7 +3,7 @@ window.LANDING_CONFIG = {
   offerUrl: "https://clicks.af-bk6bba.com/click?offer_id=868&partner_id=34864&landing_id=3214&utm_medium=affiliate",
 
   // ID счётчика Яндекс Метрики (число) или null.
-  yandexMetrikaId: null,
+  yandexMetrikaId: 113568387,
   metrikaWebvisor: true,          // Вебвизор (записи сессий); false — отключить
 
   // Юридическая информация. Заполните данными из условий оффера / рекламной сети.
