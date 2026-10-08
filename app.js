@@ -1,114 +1,77 @@
 (() => {
   const cfg = window.LANDING_CONFIG || {};
-  let selectedBonus = "freebet";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
-  const $ = (s, root = document) => root.querySelector(s);
-  const $$ = (s, root = document) => [...root.querySelectorAll(s)];
+  // --- Подстановка текстов из config.js: <span data-cfg="bonus.amount"> ---
+  const get = (path) => path.split(".").reduce((o, k) => (o == null ? o : o[k]), cfg);
+  $$("[data-cfg]").forEach(el => {
+    const v = get(el.dataset.cfg);
+    if (v) el.textContent = v;
+  });
+  const yearEl = $("#year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  const erid = $("#erid");
+  if (erid && cfg.erid) erid.textContent = " · erid: " + cfg.erid;
 
-  const setText = (selector, value) => {
-    const el = $(selector);
-    if (el && value) el.textContent = value;
-  };
-
-  setText("#heroTitle", cfg.bonus?.heroTitle);
-  setText("#heroSubtitle", cfg.bonus?.heroSubtitle);
-  setText("#startBonusText", cfg.bonus?.startBonus);
-  setText("#fastPayoutText", cfg.bonus?.fastPayout);
-  setText("#freebetText", cfg.bonus?.freebet);
-  setText("#welcomeText", cfg.bonus?.welcome);
-  setText("#stickyBonus", cfg.bonus?.freebet);
-  setText("#operatorName", cfg.operatorName);
-  setText("#licenseText", cfg.licenseText);
-  setText("#year", new Date().getFullYear());
-
-  const trackedParams = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "yclid", "gclid"];
+  // --- Партнёрская ссылка ---
+  const tracked = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "yclid", "gclid"];
   const incoming = new URLSearchParams(location.search);
 
-  function getOfferUrl(source) {
-    const raw = cfg.offerUrl || "#";
-    if (raw === "#") return "#";
+  function buildUrl(source) {
+    const raw = cfg.offerUrl;
+    if (!raw || raw === "#") return null;
     try {
       const url = new URL(raw, location.href);
-      trackedParams.forEach(k => {
+      tracked.forEach(k => {
         const v = incoming.get(k);
+        // Параметры из ссылки партнёрки не перезаписываем
         if (v && !url.searchParams.has(k)) url.searchParams.set(k, v);
       });
-      url.searchParams.set("lp_source", source || "unknown");
-      url.searchParams.set("lp_bonus", selectedBonus);
       return url.toString();
-    } catch {
-      return raw;
-    }
+    } catch { return raw; }
   }
 
   function trackGoal(name, params = {}) {
     const id = cfg.yandexMetrikaId;
-    if (id && typeof window.ym === "function") {
-      window.ym(Number(id), "reachGoal", name, params);
-    }
+    if (id && typeof window.ym === "function") window.ym(Number(id), "reachGoal", name, params);
   }
 
+  // href выставляется сразу при загрузке — работают «открыть в новой вкладке» и копирование ссылки
   $$(".js-offer").forEach(link => {
+    const url = buildUrl(link.dataset.source);
+    if (url) link.href = url;
+    link.rel = "nofollow sponsored noopener";
     link.addEventListener("click", e => {
-      const url = getOfferUrl(link.dataset.source);
-      if (url === "#") {
-        e.preventDefault();
-        alert("Укажите партнёрскую ссылку в файле config.js");
-        return;
-      }
-      trackGoal("offer_click", { source: link.dataset.source || "unknown", bonus: selectedBonus });
-      link.href = url;
+      if (!url) { e.preventDefault(); console.warn("Укажите offerUrl в config.js"); return; }
+      trackGoal("offer_click", { source: link.dataset.source || "unknown" });
     });
   });
 
-  const bonusCards = $$(".bonus-card");
-  bonusCards.forEach(card => card.addEventListener("click", () => {
-    selectedBonus = card.dataset.bonus;
-    bonusCards.forEach(c => {
-      const active = c === card;
-      c.classList.toggle("is-active", active);
-      c.setAttribute("aria-checked", active ? "true" : "false");
-    });
-    const text = selectedBonus === "freebet" ? (cfg.bonus?.freebet || "Фрибет") : (cfg.bonus?.welcome || "Приветственный бонус");
-    setText("#stickyBonus", text);
-    setText("#bonusCtaText", selectedBonus === "freebet" ? "ВЫБРАТЬ ФРИБЕТ" : "ВЫБРАТЬ БОНУС +100%");
-    trackGoal("bonus_select", { bonus: selectedBonus });
-  }));
+  // --- Липкая кнопка: показываем после первого экрана ---
+  const sticky = $("#mobileSticky");
+  const hero = $(".hero");
+  if (sticky && hero && "IntersectionObserver" in window) {
+    new IntersectionObserver(([en]) => sticky.classList.toggle("is-on", !en.isIntersecting), { threshold: 0 }).observe(hero);
+  } else if (sticky) sticky.classList.add("is-on");
 
-  const proof = Array.isArray(cfg.liveProof) ? cfg.liveProof.filter(x => x?.name && x?.amount) : [];
-  const proofSection = $("#liveProof");
-  const liveTrack = $("#liveTrack");
-  if (proof.length && proofSection && liveTrack) {
-    const items = [...proof, ...proof];
-    liveTrack.innerHTML = items.map(item => `
-      <div class="live-item">
-        <div><b>${escapeHtml(item.name)}</b><small>${escapeHtml(item.event || "Спорт")}</small></div>
-        <strong>${escapeHtml(item.amount)}</strong>
-      </div>`).join("");
-    proofSection.hidden = false;
-  }
-
-  function escapeHtml(value) {
-    return String(value).replace(/[&<>'"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[ch]));
-  }
-
-  const revealEls = $$(".perk,.bonus-card,.final-cta,.legal");
-  revealEls.forEach(el => el.classList.add("reveal"));
+  // --- Появление блоков ---
+  const reveal = $$(".reveal");
   if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    const io = new IntersectionObserver(entries => entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add("is-visible"); io.unobserve(entry.target); }
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
     }), { threshold: .12 });
-    revealEls.forEach(el => io.observe(el));
-  } else revealEls.forEach(el => el.classList.add("is-visible"));
+    reveal.forEach(el => io.observe(el));
+  } else reveal.forEach(el => el.classList.add("is-visible"));
 
+  // --- Яндекс Метрика ---
   if (cfg.yandexMetrikaId) {
     const id = Number(cfg.yandexMetrikaId);
-    window.ym = window.ym || function(){ (window.ym.a = window.ym.a || []).push(arguments); };
+    window.ym = window.ym || function () { (window.ym.a = window.ym.a || []).push(arguments); };
     window.ym.l = Date.now();
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "https://mc.yandex.ru/metrika/tag.js";
-    document.head.appendChild(script);
-    window.ym(id, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+    const s = document.createElement("script");
+    s.async = true; s.src = "https://mc.yandex.ru/metrika/tag.js";
+    document.head.appendChild(s);
+    window.ym(id, "init", { clickmap: true, trackLinks: true, accurateTrackBounce: true });
   }
 })();

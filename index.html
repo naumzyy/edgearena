@@ -3,169 +3,219 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#0B0E11">
+  <meta name="theme-color" content="#0a0a0a">
   <meta name="color-scheme" content="dark">
-  <meta name="description" content="Спортивная платформа: события, коэффициенты, бонусы и быстрый доступ с мобильного.">
-  <title>Пульс Спорта — спортивная платформа</title>
-  <link rel="preload" href="./styles.css" as="style">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Фрибет до 15 000 ₽ без депозита для новых игроков. Переходи по ссылке и забирай бонус на старт.">
+  <title>Фрибет до 15 000 ₽ без депозита — Пульс Спорта</title>
+  <script>document.documentElement.classList.add("js")</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&display=swap">
   <link rel="stylesheet" href="./styles.css">
   <script src="./config.js" defer></script>
   <script src="./app.js" defer></script>
 </head>
 <body>
-  <div class="site-shell">
-    <header class="topbar" aria-label="Главная навигация">
+
+<!-- Графика (SVG): мячи, кубок, шевроны. Всё нарисовано с нуля, без чужих логотипов -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="gBallRed" cx=".35" cy=".3" r=".85">
+      <stop offset="0" stop-color="#ff4a4a"/><stop offset=".45" stop-color="#d3101f"/><stop offset="1" stop-color="#4a0309"/>
+    </radialGradient>
+    <radialGradient id="gBallDark" cx=".35" cy=".3" r=".9">
+      <stop offset="0" stop-color="#3b3b3b"/><stop offset=".55" stop-color="#101010"/><stop offset="1" stop-color="#000"/>
+    </radialGradient>
+    <radialGradient id="gOrange" cx=".35" cy=".3" r=".9">
+      <stop offset="0" stop-color="#ff3a3a"/><stop offset=".5" stop-color="#c10f1d"/><stop offset="1" stop-color="#52040b"/>
+    </radialGradient>
+    <linearGradient id="gSilver" x1="0" x2="1">
+      <stop offset="0" stop-color="#5d6068"/><stop offset=".18" stop-color="#e9ebef"/><stop offset=".42" stop-color="#9b9ea6"/>
+      <stop offset=".7" stop-color="#f6f7f9"/><stop offset="1" stop-color="#4b4e55"/>
+    </linearGradient>
+    <linearGradient id="gChev" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff1f2d"/><stop offset="1" stop-color="#7a0610"/>
+    </linearGradient>
+    <clipPath id="clipBall"><circle cx="100" cy="100" r="98"/></clipPath>
+    <symbol id="ico-chevron" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<div class="site-shell">
+
+  <header class="hero" id="top">
+    <!-- фон: диагональные шевроны -->
+    <svg class="chevrons" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <g fill="url(#gChev)">
+        <polygon opacity=".12" points="0,2 50,26 100,2 100,10 50,34 0,10"/>
+        <polygon opacity=".2"  points="0,17 50,41 100,17 100,25 50,49 0,25"/>
+        <polygon opacity=".32" points="0,32 50,56 100,32 100,40 50,64 0,40"/>
+        <polygon opacity=".5"  points="0,47 50,71 100,47 100,55 50,79 0,55"/>
+        <polygon opacity=".7"  points="0,62 50,86 100,62 100,70 50,94 0,70"/>
+        <polygon opacity=".9"  points="0,77 50,101 100,77 100,85 50,109 0,85"/>
+      </g>
+    </svg>
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- мяч футбольный -->
+    <svg class="deco ball-soccer" viewBox="0 0 200 200" aria-hidden="true">
+      <g clip-path="url(#clipBall)">
+        <circle cx="100" cy="100" r="98" fill="url(#gBallRed)"/>
+        <g fill="#0b0b0b" stroke="#1a0205" stroke-width="2" stroke-linejoin="round">
+          <polygon points="100,72 126.6,91.3 116.5,122.7 83.5,122.7 73.4,91.3"/>
+          <g id="outerPatch"><polygon points="100,39 122.8,22.4 114.1,-4.4 85.9,-4.4 77.2,22.4"/></g>
+          <use href="#outerPatch" transform="rotate(72 100 100)"/>
+          <use href="#outerPatch" transform="rotate(144 100 100)"/>
+          <use href="#outerPatch" transform="rotate(216 100 100)"/>
+          <use href="#outerPatch" transform="rotate(288 100 100)"/>
+        </g>
+        <g stroke="#1a0205" stroke-width="2.4" fill="none" stroke-linecap="round">
+          <path id="seam" d="M100 72V39"/>
+          <use href="#seam" transform="rotate(72 100 100)"/><use href="#seam" transform="rotate(144 100 100)"/>
+          <use href="#seam" transform="rotate(216 100 100)"/><use href="#seam" transform="rotate(288 100 100)"/>
+        </g>
+        <ellipse cx="68" cy="52" rx="46" ry="26" fill="#fff" opacity=".13" transform="rotate(-30 68 52)"/>
+      </g>
+    </svg>
+
+    <!-- мяч баскетбольный -->
+    <svg class="deco ball-basket" viewBox="0 0 200 200" aria-hidden="true">
+      <g clip-path="url(#clipBall)">
+        <circle cx="100" cy="100" r="98" fill="url(#gBallDark)"/>
+        <path d="M30 30Q100 100 30 170A99 99 0 0 1 30 30Z" fill="url(#gOrange)"/>
+        <path d="M170 30Q100 100 170 170A99 99 0 0 0 170 30Z" fill="url(#gOrange)"/>
+        <g stroke="#050505" stroke-width="4.5" fill="none" stroke-linecap="round">
+          <path d="M100 2V198M2 100H198M30 30Q100 100 30 170M170 30Q100 100 170 170"/>
+        </g>
+        <ellipse cx="68" cy="52" rx="46" ry="24" fill="#fff" opacity=".1" transform="rotate(-30 68 52)"/>
+      </g>
+    </svg>
+
+    <!-- кубок (без эмблем) -->
+    <svg class="deco trophy" viewBox="0 0 220 280" aria-hidden="true">
+      <g fill="none" stroke="url(#gSilver)" stroke-width="11" stroke-linecap="round">
+        <path d="M44 36C-6 28-6 98 52 108"/><path d="M176 36C226 28 226 98 168 108"/>
+      </g>
+      <path d="M38 16H182C182 92 156 134 110 146C64 134 38 92 38 16Z" fill="url(#gSilver)"/>
+      <path d="M52 22H70C72 80 86 118 108 138C78 126 54 92 52 22Z" fill="#fff" opacity=".35"/>
+      <polygon points="110,52 118,74 142,74 123,88 130,111 110,97 90,111 97,88 78,74 102,74" fill="#c9101d" opacity=".92"/>
+      <rect x="98" y="144" width="24" height="52" fill="url(#gSilver)"/>
+      <path d="M66 196H154L166 222H54Z" fill="url(#gSilver)"/>
+      <rect x="48" y="222" width="124" height="30" rx="4" fill="url(#gSilver)"/>
+      <rect x="48" y="246" width="124" height="6" fill="#000" opacity=".25"/>
+    </svg>
+
+    <div class="topbar">
       <a class="brand" href="#top" aria-label="Пульс Спорта — наверх">
         <span class="brand-mark" aria-hidden="true"><i></i><b></b></span>
         <span>ПУЛЬС <strong>СПОРТА</strong></span>
       </a>
-      <a class="top-cta js-offer" href="#" data-source="header">Перейти</a>
-    </header>
+      <p class="ad-line">Реклама 18+. Рекламодатель: <span data-cfg="advertiser">[Рекламодатель]</span><span id="erid"></span></p>
+    </div>
 
-    <main id="top">
-      <section class="hero section">
-        <div class="hero-copy">
-          <div class="eyebrow"><span class="pulse-dot"></span> СПОРТ · СЕЙЧАС · КИБЕРСПОРТ</div>
-          <h1 id="heroTitle">Твой первый шаг к большой победе. Забирай бонус на старт!</h1>
-          <p class="hero-sub" id="heroSubtitle">Высокие коэффициенты, быстрые выплаты и бонус при регистрации.</p>
+    <div class="hero-inner">
+      <h1>
+        <span class="h1-red">Твой старт</span>
+        <span class="h1-white">без вложений</span>
+      </h1>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary btn-xl js-offer" href="#" data-source="hero">
-              <span>ПОЛУЧИТЬ БОНУС</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
-            </a>
-            <a class="link-btn" href="#bonus">Сравнить бонусы</a>
-          </div>
+      <div class="amount" aria-label="Фрибет до 15 000 рублей">
+        <small>до</small>
+        <b data-cfg="bonus.amount">15 000 ₽</b>
+      </div>
+      <p class="amount-sub" data-cfg="bonus.type">ФРИБЕТ БЕЗ ДЕПОЗИТА</p>
 
-          <div class="trust-row" aria-label="Информация о доступе">
-            <span class="trust-chip"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-5"/></svg>18+ · Лицензированная деятельность</span>
-            <span class="trust-chip muted">Защищённое соединение</span>
-          </div>
-        </div>
+      <a class="btn-pill js-offer" href="#" data-source="hero">ПОЛУЧИТЬ ПО ССЫЛКЕ</a>
 
-        <div class="hero-visual" aria-hidden="true">
-          <div class="orb orb-a"></div>
-          <div class="orb orb-b"></div>
-          <div class="stadium">
-            <div class="stadium-grid"></div>
-            <div class="score-card glass">
-              <div class="score-top"><span>СЕЙЧАС</span><small>72:18</small></div>
-              <div class="teams"><b>2</b><i>:</i><b>1</b></div>
-              <div class="odds"><span>1.84</span><span>3.20</span><span>4.65</span></div>
-            </div>
-            <svg class="sport-ball" viewBox="0 0 240 240">
-              <defs><radialGradient id="g"><stop offset="0" stop-color="#eafff1"/><stop offset=".45" stop-color="#00e676"/><stop offset="1" stop-color="#064b2b"/></radialGradient></defs>
-              <circle cx="120" cy="120" r="86" fill="url(#g)" opacity=".95"/>
-              <path d="M120 57l30 22-11 35H101L90 79l30-22zm-30 92l-31-8-10-34 24-24 18 31-1 35zm60 0l31-8 10-34-24-24-18 31 1 35zm-44 40l-19-29 17-26h32l17 26-19 29h-28z" fill="#07140d" opacity=".82"/>
-            </svg>
-            <div class="ticker-card glass"><span>⚡</span><div><small>Сегодня</small><b>1 000+ событий</b></div></div>
-          </div>
-        </div>
-      </section>
+      <a class="scroll-hint" href="#how" aria-label="Узнать подробнее">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l7 7 7-7M5 12l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="torn" aria-hidden="true"></div>
+  </header>
 
-      <section class="section perks" aria-label="Преимущества">
-        <article class="perk glass">
-          <div class="perk-icon">↗</div>
-          <h2>Быстрый вывод</h2>
-          <p id="fastPayoutText">Удобные способы получения выплат.</p>
-        </article>
-        <article class="perk glass">
-          <div class="perk-icon">%</div>
-          <h2>Топ коэффициенты</h2>
-          <p>Конкурентная линия на ключевые спортивные события.</p>
-        </article>
-        <article class="perk glass">
-          <div class="perk-icon">∞</div>
-          <h2>1 000+ событий</h2>
-          <p>Футбол, хоккей, ММА, баскетбол и киберспорт каждый день.</p>
-        </article>
-        <article class="perk glass accent-card">
-          <div class="perk-icon">★</div>
-          <h2>Стартовый бонус</h2>
-          <p id="startBonusText">Условия бонуса уточняйте у оператора.</p>
-        </article>
-      </section>
+  <main>
+    <section class="section how" id="how">
+      <div class="section-heading">
+        <span class="kicker">ВСЕГО 3 ШАГА</span>
+        <h2>Как получить бонус</h2>
+      </div>
+      <ol class="steps">
+        <li class="step reveal">
+          <span class="step-num">01</span>
+          <h3>Перейди по ссылке</h3>
+          <p>Нажми на красную кнопку — откроется страница оператора с актуальным предложением.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step-num">02</span>
+          <h3>Создай аккаунт</h3>
+          <p>Регистрация на стороне лицензированного оператора. Участие — только для совершеннолетних.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step-num">03</span>
+          <h3>Получи фрибет</h3>
+          <p>Размер и порядок начисления определяются правилами акции на сайте оператора.</p>
+        </li>
+      </ol>
+    </section>
 
-      <section class="section bonus-section" id="bonus">
-        <div class="section-heading">
-          <span class="kicker">ВЫБЕРИ СВОЙ ВАРИАНТ</span>
-          <h2>Какой бонус тебе ближе?</h2>
-          <p>Нажми на карточку — выбранный вариант будет передан при переходе.</p>
-        </div>
+    <section class="section perks" aria-label="Преимущества">
+      <article class="perk reveal">
+        <span class="perk-ico">0 ₽</span>
+        <h3>Без депозита</h3>
+        <p>Чтобы получить фрибет, пополнять счёт не нужно.</p>
+      </article>
+      <article class="perk perk-hot reveal">
+        <span class="perk-ico">★</span>
+        <h3>До <span data-cfg="bonus.amount">15 000 ₽</span></h3>
+        <p>Максимальный размер фрибета для новых игроков.</p>
+      </article>
+      <article class="perk reveal">
+        <span class="perk-ico">⚑</span>
+        <h3>С мобильного</h3>
+        <p>Удобно с телефона: оформление за пару минут.</p>
+      </article>
+    </section>
 
-        <div class="bonus-grid" role="radiogroup" aria-label="Выбор бонуса">
-          <button class="bonus-card glass is-active" type="button" role="radio" aria-checked="true" data-bonus="freebet">
-            <span class="bonus-badge">БЕЗ ЛИШНИХ ШАГОВ</span>
-            <span class="bonus-icon">⚡</span>
-            <strong id="freebetText">Фрибет 2 000 ₽</strong>
-            <small>Вариант для быстрого старта</small>
-            <i class="select-dot"></i>
-          </button>
-          <button class="bonus-card glass" type="button" role="radio" aria-checked="false" data-bonus="welcome">
-            <span class="bonus-badge violet">БОЛЬШЕ НА СТАРТЕ</span>
-            <span class="bonus-icon">✦</span>
-            <strong id="welcomeText">+100% к первому пополнению</strong>
-            <small>Вариант для увеличенного стартового баланса</small>
-            <i class="select-dot"></i>
-          </button>
-        </div>
+    <section class="section sports-strip reveal" aria-label="Виды спорта">
+      <span class="sport-chip">Футбол</span>
+      <span class="sport-chip">Хоккей</span>
+      <span class="sport-chip">Баскетбол</span>
+      <span class="sport-chip">ММА</span>
+      <span class="sport-chip">Теннис</span>
+      <span class="sport-chip">Киберспорт</span>
+    </section>
 
-        <a class="btn btn-primary btn-wide js-offer" href="#" data-source="bonus-widget">
-          <span id="bonusCtaText">ВЫБРАТЬ ФРИБЕТ</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
-        </a>
-        <p class="fineprint">Конкретный размер и порядок начисления бонуса определяются правилами акции оператора.</p>
-      </section>
+    <section class="section final-cta reveal">
+      <div class="final-text">
+        <span class="kicker">ГОТОВ К СТАРТУ?</span>
+        <h2><span data-cfg="bonus.short">Фрибет до 15 000 ₽</span> — без депозита</h2>
+        <p>Переходи по ссылке и забирай бонус, пока предложение доступно.</p>
+      </div>
+      <a class="btn-pill btn-pill-light js-offer" href="#" data-source="final">ПОЛУЧИТЬ ПО ССЫЛКЕ</a>
+    </section>
 
-      <section class="section live-proof" id="liveProof" hidden>
-        <div class="section-heading compact">
-          <span class="kicker"><span class="pulse-dot"></span> ПОДТВЕРЖДЁННЫЕ ВЫПЛАТЫ</span>
-          <h2>Сейчас на платформе</h2>
-        </div>
-        <div class="live-window glass" aria-live="polite">
-          <div class="live-track" id="liveTrack"></div>
-        </div>
-      </section>
+    <section class="legal section" aria-label="Юридическая информация">
+      <div class="age">18+</div>
+      <div>
+        <p class="legal-warn"><strong>Участие в азартных играх может привести к возникновению зависимости от них.</strong></p>
+        <p>Реклама. Рекламодатель: <span data-cfg="advertiser">[Рекламодатель]</span>. Информация об организаторе азартных игр, правилах проведения, сроках, порядке определения выигрыша и максимально допустимом его значении, месте и порядке получения выигрышей размещена на сайте оператора. «До 15 000 ₽» — максимальный размер фрибета; фактический размер и условия начисления определяются правилами акции.</p>
+        <p><span data-cfg="operatorName">[Юридическое лицо оператора]</span> · <span data-cfg="licenseText">[Номер лицензии и орган, выдавший лицензию]</span></p>
+      </div>
+    </section>
+  </main>
 
-      <section class="section sports-strip">
-        <div class="sport-chip">⚽ Футбол</div>
-        <div class="sport-chip">🏒 Хоккей</div>
-        <div class="sport-chip">🥊 ММА</div>
-        <div class="sport-chip">🏀 Баскетбол</div>
-        <div class="sport-chip">🎮 Киберспорт</div>
-      </section>
+  <footer>
+    <span>© <span id="year"></span> ПУЛЬС СПОРТА</span>
+    <span>Информационный лендинг. Все условия — на сайте оператора.</span>
+  </footer>
+</div>
 
-      <section class="section final-cta glass">
-        <div>
-          <span class="kicker">ГОТОВ К СТАРТУ?</span>
-          <h2>События уже в линии</h2>
-          <p>Выбери бонус и переходи к регистрации на стороне лицензированного оператора.</p>
-        </div>
-        <a class="btn btn-primary btn-xl js-offer" href="#" data-source="final">ПОЛУЧИТЬ БОНУС</a>
-      </section>
+<div class="mobile-sticky" id="mobileSticky">
+  <div><small>Бонус новым игрокам</small><b data-cfg="bonus.short">Фрибет до 15 000 ₽</b></div>
+  <a class="btn-pill btn-pill-sm js-offer" href="#" data-source="sticky">ЗАБРАТЬ</a>
+</div>
 
-      <section class="legal section" aria-label="Юридическая информация">
-        <div class="age">18+</div>
-        <div>
-          <p><strong>Участие в азартных играх может привести к возникновению зависимости от них.</strong></p>
-          <p>Информация об организаторе азартных игр, правилах проведения, сроках, порядке определения выигрыша и максимально допустимом его значении, месте и порядке получения выигрышей размещена на сайте оператора.</p>
-          <p><span id="operatorName">[Юридическое лицо оператора]</span> · <span id="licenseText">[Номер лицензии и орган, выдавший лицензию]</span></p>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <span>© <span id="year"></span> ПУЛЬС СПОРТА</span>
-      <span>Информационный лендинг спортивной платформы</span>
-    </footer>
-  </div>
-
-  <div class="mobile-sticky" id="mobileSticky">
-    <div><small>Выбранный бонус</small><b id="stickyBonus">Фрибет 2 000 ₽</b></div>
-    <a class="btn btn-primary js-offer" href="#" data-source="sticky">ЗАБРАТЬ</a>
-  </div>
-
-  <!-- ЯНДЕКС МЕТРИКА: вставка выполняется автоматически из config.js,
-       либо замените этот комментарий кодом счётчика вручную. -->
 </body>
 </html>

@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: edgearena-landing
+    name: sports-landing
     runtime: static
     staticPublishPath: .
     pullRequestPreviewsEnabled: false
