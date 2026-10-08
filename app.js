@@ -1,5 +1,7 @@
 (() => {
   const cfg = window.LANDING_CONFIG || {};
+  const t0 = Date.now();                       // момент открытия страницы
+  const minSec = Number(cfg.qualifiedSeconds) || 10; // сколько секунд нужно пробыть до клика
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
@@ -44,7 +46,11 @@
     link.rel = "nofollow sponsored noopener";
     link.addEventListener("click", e => {
       if (!url) { e.preventDefault(); console.warn("Укажите offerUrl в config.js"); return; }
-      trackGoal("offer_click", { source: link.dataset.source || "unknown" });
+      const sec = Math.round((Date.now() - t0) / 1000);
+      const source = link.dataset.source || "unknown";
+      trackGoal("offer_click", { source, sec });
+      // Качественный клик: пользователь пробыл на странице не меньше minSec секунд
+      trackGoal(sec >= minSec ? "qualified_click" : "early_click", { source, sec });
     });
   });
 
